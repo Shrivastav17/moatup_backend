@@ -3,8 +3,8 @@ import invite_sendinvestorupload from "../Middlewares/invitensendinestor.uploads
 import {
   createSendMaterial,
   getAllSendMaterials,
-  // updateSendMaterial,
-  deleteSendMaterial
+  updateSendMaterial,
+  deleteSendMaterial,
 } from "../Controllers/sendMaterialControllers.js";
 
 const sendMaterialRoute = express.Router();
@@ -17,7 +17,7 @@ sendMaterialRoute.post(
 );
 
 sendMaterialRoute.get("/send-material", getAllSendMaterials);
-// sendMaterialRoute.put("/send-material/:id", updateSendMaterial);
+sendMaterialRoute.put("/send-material/:id", updateSendMaterial);
 sendMaterialRoute.delete("/send-material/:id", deleteSendMaterial);
 
 export default sendMaterialRoute;
