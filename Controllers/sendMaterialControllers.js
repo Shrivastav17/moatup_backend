@@ -7,7 +7,7 @@ const createSendMaterial = async (req, res) => {
       return res.status(400).json({ error: 'Files are required (documents & DB attachment)' });
     }
 
-    const { fileType, year, quarter, emails,message, } = req.body;
+    const { fileType, year, quarter,emails,message, } = req.body;
 
     if (!fileType || !year || !quarter || !emails || !message) {
       return res.status(400).json({ error: 'All fields are required' });
@@ -63,24 +63,24 @@ const getAllSendMaterials = async (req, res) => {
 };
 
 // === UPDATE ===
-const updateSendMaterial = async (req, res) => {
-  try {
-    const { id } = req.params;
+// const updateSendMaterial = async (req, res) => {
+//   try {
+//     const { id } = req.params;
 
-    const updated = await sendMaterialModel.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+//     const updated = await sendMaterialModel.findByIdAndUpdate(id, req.body, {
+//       new: true,
+//     });
 
-    if (!updated) {
-      return res.status(404).json({ error: "Material not found" });
-    }
+//     if (!updated) {
+//       return res.status(404).json({ error: "Material not found" });
+//     }
 
-    res.status(200).json({ message: "Material updated", data: updated });
-  } catch (error) {
-    console.error("Update Error:", error);
-    res.status(500).json({ error: "Failed to update material" });
-  }
-};
+//     res.status(200).json({ message: "Material updated", data: updated });
+//   } catch (error) {
+//     console.error("Update Error:", error);
+//     res.status(500).json({ error: "Failed to update material" });
+//   }
+// };
 
 // === DELETE ===
 const deleteSendMaterial = async (req, res) => {
@@ -103,6 +103,6 @@ const deleteSendMaterial = async (req, res) => {
 export {
   createSendMaterial,
   getAllSendMaterials,
-  updateSendMaterial,
-  deleteSendMaterial,
+  // updateSendMaterial,
+  deleteSendMaterial
 };
