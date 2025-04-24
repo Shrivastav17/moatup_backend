@@ -40,8 +40,6 @@ const invite_sendinvestorupload = multer({
   storage,
   fileFilter,
 }).fields([
-  { name: "attachedDocuments", maxCount: 10 },
-  { name: "dbAttachment", maxCount: 1 },
   { name: "inviteFile", maxCount: 1 },
   { name: "databaseFile", maxCount: 1 },
 ]);

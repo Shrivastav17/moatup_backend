@@ -7,7 +7,7 @@ const createSendMaterial = async (req, res) => {
       return res.status(400).json({ error: 'Files are required (documents & DB attachment)' });
     }
 
-    const { fileType, year, quarter,emails,message, } = req.body;
+    const { fileType, year, quarter, emails, message, } = req.body;
 
     if (!fileType || !year || !quarter || !emails || !message) {
       return res.status(400).json({ error: 'All fields are required' });
@@ -20,7 +20,7 @@ const createSendMaterial = async (req, res) => {
       url: file.path,
     }));
 
-    const dbAttach= {
+    const dbAttach = {
       name: req.files.dbAttachment[0].originalname,
       url: req.files.dbAttachment[0].path,
     };
@@ -43,8 +43,8 @@ const createSendMaterial = async (req, res) => {
     });
     console.log("REQ.FILES =>", req.files);
     console.log("REQ.BODY =>", req.body);
-    
-  } 
+
+  }
 
   catch (error) {
     console.error("Send Material Error:", error);

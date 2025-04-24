@@ -1,33 +1,6 @@
 import path from 'path';
 import postModel from "../Models/postModal.js";
 
-// Add a Post (including media upload)
-// export const addPost = async (req, res) => {
-//     try {
-//         // Log request data
-//         console.log("Files received:", req.files);
-//         console.log("Body Data:", req.body);
-
-//         // Extract post data
-//         const { content, message } = req.body;
-//         const userId = req.userId; // Comes from authentication middleware
-//         console.log("User ID:", req.userId);
-//         // Extract file paths
-//         const media = req.files.map(file => path.basename(file.path)); // Stores only filename
-
-//         // Create new post
-//         const newPost = new postModel({ userId, content, message, media });
-//         const savedPost = await newPost.save();
-//         res.status(201).json({ message: "Post created successfully", post: savedPost });
-      
-//     }
-//      catch (error) {
-//         console.error("Error creating post:", error);
-//         res.status(500).json({ message: "Error creating post", error });
-//     }
-// };
-
-
 export const addPost = async (req, res) => {
     try {
         console.log("Files received:", req.files);

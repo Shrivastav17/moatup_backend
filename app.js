@@ -11,17 +11,18 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import inviteInvestorRoute from './Routes/inviteInvestorRoute.js';
 import sendMaterialRoute from './Routes/sendMaterialRoutes.js';
+import completeProfileRoute from './Routes/completeProfileRoute.js';
 
 dbconnection()
-    .then((res) => {
-        console.log("db connected");
-        // console.log(res);  
+  .then((res) => {
+    console.log("db connected");
+    // console.log(res);  
 
-    })
-    .catch((err) => {
-        console.log("error", err);
+  })
+  .catch((err) => {
+    console.log("error", err);
 
-    })
+  })
 
 // Initialize Express app
 const app = express();
@@ -34,8 +35,8 @@ const io = new Server(httpServer, {
 });
 // CORS configuration
 const corsOptions = {
-    origin: 'http://localhost:3000',  // Allow requests from this origin (your frontend)
-    credentials: true,  // Allow credentials such as cookies, authorization headers
+  origin: 'http://localhost:3000',  // Allow requests from this origin (your frontend)
+  credentials: true,  // Allow credentials such as cookies, authorization headers
 };
 
 // Apply CORS middleware with the defined options
@@ -52,19 +53,20 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", userRoute);
 app.use("/investor", selectinvestorRouter);
-app.use("/", inviteInvestorRoute);
-app.use("/", createpostRouter);
-app.use("/",sendMaterialRoute);
+app.use("/inviteinvestor", inviteInvestorRoute);
+app.use("/createpost", createpostRouter);
+app.use("/sendmaterial", sendMaterialRoute);
+app.use("/completeprofile", completeProfileRoute);
 app.listen(process.env.port, function () {
-    console.log("app started");
+  console.log("app started");
 
 });
 
 // Handle Socket.io Connections
 io.on("connection", (socket) => {
-    console.log("New client connected:", socket.id);
-  
-    socket.on("disconnect", () => {
-      console.log("Client disconnected:", socket.id);
-    });
+  console.log("New client connected:", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("Client disconnected:", socket.id);
   });
+});
